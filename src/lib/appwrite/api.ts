@@ -102,7 +102,6 @@ export async function getCurrentUser() {
   }
 }
 
-// ============================== SIGN OUT
 export async function signOutAccount() {
   try {
     const session = await account.deleteSession('current')
@@ -120,6 +119,7 @@ export async function createPost(post: INewPost) {
     if (!uploadedFile) throw Error
 
     const fileUrl = getFilePreview(uploadedFile.$id)
+
     if (!fileUrl) {
       await deleteFile(uploadedFile.$id)
       throw Error
@@ -434,11 +434,6 @@ export async function getRecentPosts() {
   }
 }
 
-// ============================================================
-// USER
-// ============================================================
-
-// ============================== GET USERS
 export async function getUsers(limit?: number) {
   const queries: any[] = [Query.orderDesc('$createdAt')]
 
